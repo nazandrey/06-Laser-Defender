@@ -47,6 +47,11 @@ public class Enemy : MonoBehaviour {
         if (damageDealer != null)
             ProcessHit(damageDealer);
     }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Player"))
+            Destroy(gameObject);
     }
 
     private void ProcessHit(DamageDealer damageDealer)
