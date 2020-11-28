@@ -115,6 +115,8 @@ MonoBehaviour:
   maxTimeBetweenShots: 3
   projectile: {fileID: 0}
   projectileSpeed: 10
+  deathParticles: {fileID: 3867475098590718234, guid: c8e4706ff4142fb47be859c5818e26a9,
+    type: 3}
 --- !u!58 &953914725606041357
 CircleCollider2D:
   m_ObjectHideFlags: 0

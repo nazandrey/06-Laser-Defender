@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour {
     [SerializeField] float maxTimeBetweenShots = 3f;
     [SerializeField] GameObject projectile;
     [SerializeField] float projectileSpeed = 10f;
+    [SerializeField] private ParticleSystem deathParticles;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -51,7 +53,7 @@ public class Enemy : MonoBehaviour {
     private void OnCollisionStay2D(Collision2D other)
     {
         if (other.collider.CompareTag("Player"))
-            Destroy(gameObject);
+            DestroyEnemy();
     }
 
     private void ProcessHit(DamageDealer damageDealer)
@@ -59,8 +61,13 @@ public class Enemy : MonoBehaviour {
         health -= damageDealer.GetDamage();
         damageDealer.Hit();
         if (health <= 0)
-        {
-            Destroy(gameObject);
-        }
+            DestroyEnemy();
+    }
+
+    private void DestroyEnemy()
+    {
+        var particles = Instantiate(deathParticles, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+        Destroy(particles, 1);
     }
 }
